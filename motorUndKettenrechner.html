@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebeeinrichtung berechnen</title>
+
+    <script>
+        function motorleistungberechnen() {
+            const v = parseFloat(document.getElementById("vin").value);
+            const F = parseInt(document.getElementById("fin").value);
+            const eta = parseFloat(document.getElementById("etain").value);
+
+            const leistung = (F * v) / eta;
+            document.getElementById("motorleistung").innerText = leistung;
+
+            let typ;
+            if (leistung < 2000) {
+                typ = "2 kW";
+            } else if (leistung < 3000) {
+                typ = "3 kW";
+            } else if (leistung < 4500) {
+                typ = "4,5 kW";
+            } else if (leistung < 6000) {
+                typ = "6 kW";
+            } else {
+                typ = "8 kW";
+            }
+
+            document.getElementById("motortyp").innerText = typ;
+        }
+
+        function ketteberechnen() {
+            const F = parseInt(document.getElementById("fin").value);
+            const sigma = parseInt(document.getElementById("sigmain").value);
+
+            const A = F / sigma;
+            document.getElementById("kettendurchmesser").innerText = Math.sqrt((2 * A) / Math.PI);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>
+        Motorleistung- und Kettendurchmesser-Rechner
+    </h1>
+
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <h3>Eingabe</h3>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Hebegeschwindigkeit eingeben (0.3 ... 0.8) [m/2]:</td>
+                        <td>v</td>
+                        <td>
+                            <input id="vin" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Maximale Last eingeben (2000 ... 5000) [N]:</td>
+                        <td>F</td>
+                        <td>
+                            <input id="fin" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gesamtwirkungsgrad eingeben (0.63 ... 075) [-]:</td>
+                        <td>eta</td>
+                        <td>
+                            <input id="etain" type="text" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <hr>
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Festigkeit vom Kettenwerkstoff eingeben (125 ... 380) [N / mm²]:</td>
+                        <td>Sigma</td>
+                        <td>
+                            <input id="sigmain" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <hr>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <td><button onclick="motorleistungberechnen()">Motorleistung berechnen</button></td>
+                        <td>P</td>
+                        <td>
+                            <p id="motorleistung"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Motortyp</td>
+                        <td>
+                            <p id="motortyp"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="ketteberechnen()">Kettendurchmesser berechnen</button></td>
+                        <td>d</td>
+                        <td>
+                            <p id="kettendurchmesser"></p>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+            </td>
+            <td>
+                <img src="hebeeinrichtung.png" alt="">
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <p>
+
+
+</body>
+
+</html>

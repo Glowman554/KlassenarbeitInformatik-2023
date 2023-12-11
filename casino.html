@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino-Programm - Roulette</title>
+
+    <script>
+        function roulette() {
+            const zahlen = [];
+            for (let i = 0; i < 3; i++) {
+                zahlen.push(Math.floor(Math.random() * 37));
+            }
+
+            const gerade = zahlen.filter(z => z != 0 && (z % 2) == 0).length;
+            const ungerade = zahlen.filter(z => z != 0 && (z % 2) != 0).length;
+
+            document.getElementById("zufalszahlen").innerText = zahlen.join(", ") + ` (${gerade} gerade, ${ungerade} ungerade)`;
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>
+        Roulette-Spiel
+    </h1>
+
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <h2>Spielregel</h2>
+                            <p>
+                                a. )Beim Klicken auf den Button sollen 3 Zufallszahlen zwischen 0 und 36 ermittelt und ausgegeben werden.
+                            </p>
+                            
+
+
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                            <p>
+                                b. )Das Programm soll ermitteln, wie viel Zahlen gerade sind (0 zählt nicht dazu) und wie viel Zahlen ungerade sind.
+                            </p>
+
+
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <hr>
+                        </td>
+                        <td>
+                            <hr>
+                        </td>
+                        <td>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td> <input type="button" value="Roulette starten" onclick="roulette()"></td>
+                        <td>
+                            <p id="zufalszahlen"></p>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+
+            </td>
+            <td>
+                <img src="roulette.jpg" alt="">
+            </td>
+        </tr>
+    </table>
+
+
+
+
+</body>
+
+</html>

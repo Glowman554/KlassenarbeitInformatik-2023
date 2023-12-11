@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgabe 2 - Winkelfunktionstabelle </title>
+
+    <script>
+        function berechne() {
+            const result = document.getElementById("result");
+
+            const start = parseFloat(document.getElementById("stw").value);
+            const end = parseFloat(document.getElementById("endw").value);
+            const step = parseFloat(document.getElementById("sw").value);
+
+            for (let i = start; i <= end; i += step) {
+                const row = document.createElement("tr");
+
+                const winkel = document.createElement("td");
+                winkel.innerText = i;
+                row.appendChild(winkel);
+
+                const sinus = document.createElement("td");
+                sinus.innerText = Math.sin(i * Math.PI / 180).toFixed(3);
+                row.appendChild(sinus);
+
+                const cosinus = document.createElement("td");
+                cosinus.innerText = Math.cos(i * Math.PI / 180).toFixed(3);
+                row.appendChild(cosinus);
+
+                const tangens = document.createElement("td");
+                if (i == 90 || i == 270) {
+                    tangens.innerText = "unendl";
+                } else {
+                    tangens.innerText = Math.tan(i * Math.PI / 180).toFixed(3);
+                }
+                row.appendChild(tangens);
+
+
+                result.appendChild(row);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Tabelle mit Winkelfunktionen</h1>
+    <h2>Eingabe der Steuerungswerte</h2>
+
+    <table>
+        <tr>
+            <td>
+                <h3>Eingabe</h3>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Startwinkel [°]:</td>
+            <td>-</td>
+            <td> <input id="stw" type="Text" /> </td>
+        </tr>
+        <tr>
+            <td>Endwinkel [°]:</td>
+            <td>-</td>
+            <td> <input id="endw" type="Text" /> </td>
+        </tr>
+        <tr>
+            <td>Schrittweite [°]:</td>
+            <td>-</td>
+            <td> <input id="sw" type="Text" /> </td>
+
+        </tr>
+    </table>
+
+    <button onclick="berechne()">Berechne</button>
+
+    <table id="result" style="border-style: double;">
+        <tr>
+            <td>Winkel</td>
+            <td>Sinus</td>
+            <td>Cosinus</td>
+            <td>Tangens</td>
+        </tr>
+    </table>
+
+
+
+</body>
+
+</html>
